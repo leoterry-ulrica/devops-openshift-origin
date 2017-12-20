@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+  <localRepository>D:/mavenrep</localRepository>
+  <servers>
+    <server>
+      <username>admin</username>
+      <password>APAGkNbWXvK5SDLsHg6qqqebtkE</password>
+      <id>central</id>
+    </server>
+    <server>
+      <username>admin</username>
+      <password>APAGkNbWXvK5SDLsHg6qqqebtkE</password>
+      <id>snapshots</id>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <id>distcentral</id>
+          <name>libs-release</name>
+          <url>http://192.168.200.86:1234/artifactory/libs-release</url>
+        </repository>
+        <repository>
+		  <releases>  
+            <enabled>false</enabled>  
+          </releases>
+          <snapshots>
+		    <enabled>true</enabled>
+		    <updatePolicy>always</updatePolicy>
+		  </snapshots>
+          <id>distsnapshots</id>
+          <name>libs-snapshot</name>
+          <url>http://192.168.200.86:1234/artifactory/libs-snapshot</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>distcentral</id>
+          <name>libs-release</name>
+          <url>http://192.168.200.86:1234/artifactory/libs-release</url>
+        </pluginRepository>
+        <pluginRepository>
+          <snapshots />
+          <id>distsnapshots</id>
+          <name>libs-snapshot</name>
+          <url>http://192.168.200.86:1234/artifactory/libs-snapshot</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <id>artifactory</id>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>artifactory</activeProfile>
+  </activeProfiles>
+  
+  <!-- 阿里云 Maven 镜像 -->
+  <mirrors>
+    <mirror>
+        <id>alimaven</id>
+        <name>aliyun maven</name>
+        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        <mirrorOf>external:*,!distcentral</mirrorOf>
+    </mirror>
+  </mirrors>
+</settings>

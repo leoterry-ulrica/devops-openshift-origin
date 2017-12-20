@@ -1,0 +1,32 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'tomcat-s2i' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 'tomcat-s2i' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+echo "---> Installing application source..."
+# Source code provided to S2I is at ${HOME}
+LOCAL_SOURCE_DIR=${HOME}
+mkdir -p $LOCAL_SOURCE_DIR
+
+# Copy the source for compilation
+cp -Rf /opt/s2i/destination/src/. $LOCAL_SOURCE_DIR
+chgrp -R 0 $LOCAL_SOURCE_DIR
+chmod -R g+rw $LOCAL_SOURCE_DIR
+
+echo "---> Building application from source..."
+cd $LOCAL_SOURCE_DIR
+mvn clean package -Dmaven.test.skip=true
+
+echo "---> Find war and move to application deploy dir..."
+find . -type f -name '*.war'|xargs -i cp {} /tomcat/webapps/
+mvn clean
+# TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
