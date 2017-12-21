@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	
-  <localRepository>D:/mavenrep</localRepository>
+  
+  <!-- 屏蔽本地路径，否则容器内编译时找不到依赖包-->
+  <!--<localRepository>D:/mavenrep</localRepository>-->
   <servers>
     <server>
       <username>admin</username>
