@@ -18,7 +18,7 @@ LOCAL_SOURCE_DIR=${HOME}
 mkdir -p $LOCAL_SOURCE_DIR
 
 # Copy the source for compilation
-cp -Rf /opt/s2i/destination/src/. $LOCAL_SOURCE_DIR
+cp -Rf /tmp/src/. $LOCAL_SOURCE_DIR
 chgrp -R 0 $LOCAL_SOURCE_DIR
 chmod -R g+rw $LOCAL_SOURCE_DIR
 

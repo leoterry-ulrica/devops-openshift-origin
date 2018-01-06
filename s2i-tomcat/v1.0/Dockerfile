@@ -29,8 +29,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     mkdir -p $HOME/.m2 && \
     mkdir -p /tomcat && \
     (curl -v http://mirrors.shuosc.org/apache/tomcat/tomcat-$TOMCAT_L_VERSION/v$TOMCAT_M_VERSION/bin/apache-tomcat-$TOMCAT_M_VERSION.tar.gz | tar -zx --strip-components=1 -C /tomcat) && \
-	rm -rf /tomcat/webapps/* && \
-    mkdir -p /opt/s2i/destination
+	rm -rf /tomcat/webapps/*
 
 # Add s2i maven customizations
 ADD ./contrib/settings.xml $HOME/.m2/
@@ -40,7 +39,6 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /tomcat && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /tomcat && \
-    chmod -R g+rw /opt/s2i/destination && \
 	chmod +x $STI_SCRIPTS_PATH/assemble && \
 	chmod +x $STI_SCRIPTS_PATH/run
 
