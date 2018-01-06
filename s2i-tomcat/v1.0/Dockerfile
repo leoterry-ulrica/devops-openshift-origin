@@ -7,8 +7,8 @@ MAINTAINER weifj <weifj@dist.com.cn>
 
 EXPOSE 8080
 
-ENV TOMCAT_L_VERSION=8 \
-    TOMCAT_M_VERSION=8.0.48 \
+ENV TOMCAT_MAJOR_VERSION=8 \
+    TOMCAT_MINOR_VERSION=8.0.48 \
     MAVEN_VERSION=3.5.2
 
 LABEL io.k8s.description="Platform for building and running JEE applications on tomcat 8.0.48 and jdk1.8." " \
