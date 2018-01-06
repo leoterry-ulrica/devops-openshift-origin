@@ -28,7 +28,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     ln -sf /usr/local/apache-maven-$MAVEN_VERSION/bin/mvn /usr/local/bin/mvn && \
     mkdir -p $HOME/.m2 && \
     mkdir -p /tomcat && \
-    (curl -v http://mirrors.shuosc.org/apache/tomcat/tomcat-$TOMCAT_L_VERSION/v$TOMCAT_M_VERSION/bin/apache-tomcat-$TOMCAT_M_VERSION.tar.gz | tar -zx --strip-components=1 -C /tomcat) && \
+    (curl -v http://mirrors.shuosc.org/apache/tomcat/tomcat-$TOMCAT_MAJOR_VERSION/v$TOMCAT_MINOR_VERSION/bin/apache-tomcat-$TOMCAT_MINOR_VERSION.tar.gz | tar -zx --strip-components=1 -C /tomcat) && \
 	rm -rf /tomcat/webapps/*
 
 # Add s2i maven customizations
