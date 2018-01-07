@@ -17,6 +17,9 @@ echo "---> Installing application source..."
 LOCAL_SOURCE_DIR=${HOME}
 mkdir -p $LOCAL_SOURCE_DIR
 
+# deploy dir
+LOCAL_DEPLOY_DIR=/tomcat/webapps/
+
 # Copy the source for compilation
 cp -Rf /tmp/src/. $LOCAL_SOURCE_DIR
 chgrp -R 0 $LOCAL_SOURCE_DIR
@@ -27,6 +30,8 @@ cd $LOCAL_SOURCE_DIR
 mvn clean package -Dmaven.test.skip=true
 
 echo "---> Find war and move to application deploy dir..."
-find . -type f -name '*.war'|xargs -i cp {} /tomcat/webapps/
+find . -type f -name '*.war'|xargs -i cp {} $LOCAL_DEPLOY_DIR
 mvn clean
+cd $LOCAL_DEPLOY_DIR
+mv *war ROOT.war
 # TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
